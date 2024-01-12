@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="http://10.0.15.21/lab/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://10.0.15.21/lab/bootstrap/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="form-group">
+            <label for="value1">Value 1: </label>
+            <input type="number" class="form-control" id="value1" name="value1">
+        </div>
+        <div class="form-group mt-2">
+            <label for="value2">Value 2: </label>
+            <input type="number" class="form-control" id="value2" name="value2">
+        </div>
+        <button class="btn btn-success pt-2" onclick="handleCalculate()">Calculate</button>
+        <div class="m-5" id="cal">
+            <p id="result">Result : </p>
+            <div id="history"></div>
+        </div>
+    </div>
+</body>
+<script>
+    let result = 0;
+
+    function handleCalculate() {
+        const elements = document.getElementById("result");
+        const value1 = document.getElementById("value1").value;
+        const value2 = document.getElementById("value2").value;
+
+        const total_num = Number(value1) + Number(value2);
+
+        const history = document.getElementById("history");
+        const pTag = document.createElement("p");
+        const text = document.createTextNode(value1 + " + " + value2 + " = " + total_num);
+
+        elements.innerHTML = "Result : " + (Number(value1) + Number(value2))
+        pTag.appendChild(text)
+        history.appendChild(pTag);
+    }  
+</script>
+
+</html>

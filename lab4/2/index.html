@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="http://10.0.15.21/lab/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://10.0.15.21/lab/bootstrap/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="form-group mt-3 mb-3">
+            <label for="firstname" id="firstname">ชื่อ: </label>
+            <input class="form-control" name="firstname">
+        </div>
+        <div class="form-group mt-3 mb-3">
+            <label for="lastname" id="lastname">นามสกุล: </label>
+            <input class="form-control" name="lastname">
+        </div>
+        <div class="form-group mt-3 mb-3">
+            <label for="country" id="country">ประเทศ: </label>
+            <select class="form-control" id="country">
+                <option value="000" id="00">เลือกประเทศ</option>
+                <option value="001" id="01">ไทย</option>
+                <option value="002" id="02">เวียดนาม</option>
+                <option value="003" id="03">ลาว</option>
+                <option value="004" id="04">มาเลเซีย</option>
+                <option value="005" id="05">สิงคโปร์</option>
+                <option value="006" id="06">ฟิลิปินส์</option>
+                <option value="007" id="07">เมียนมาร์</option>
+                <option value="008" id="08">กัมพูชา</option>
+                <option value="009" id="09">บรูไน</option>
+                <option value="010" id="10">อินโดนีเซีย</option>
+            </select>
+        </div>
+        <div class="form-group mt-3 mb-3">
+            <button onclick="handleClick()" id="click">Click to English</button>
+        </div>
+    </div>
+<body>
+<script>
+   let lang = false;
+   
+   
+   function handleClick() {
+        lang = !lang;
+        let i00 = document.getElementById("00");
+        let i01 = document.getElementById("01");
+        let i02 = document.getElementById("02");
+        let i03 = document.getElementById("03");
+        let i04 = document.getElementById("04");
+        let i05 = document.getElementById("05");
+        let i06 = document.getElementById("06");
+        let i07 = document.getElementById("07");
+        let i08 = document.getElementById("08");
+        let i09 = document.getElementById("09");
+        let i10 = document.getElementById("10");
+
+        if (lang) {
+            document.getElementById("firstname").innerHTML = "FirstName: "
+            document.getElementById("lastname").innerHTML = "LastName: "
+            document.getElementById("country").innerHTML = "country: "    
+            document.getElementById("click").innerHTML = "คลิกเพื่อเป็นภาษาไทย"
+            i00.textContent = "Select a country";
+            i01.textContent = "Thailand";
+            i02.textContent = "Vietnam";
+            i03.textContent = "Laos";
+            i04.textContent = "Malaysia";
+            i05.textContent = "Singapore";
+            i06.textContent = "Philippines";
+            i07.textContent = "Myanmar";
+            i08.textContent = "Cambodia";
+            i09.textContent = "Brunei";
+            i10.textContent = "Indonesia";
+        
+        } else {    
+            document.getElementById("firstname").innerHTML = "ชื่อจริง: "
+            document.getElementById("lastname").innerHTML = "นามสกุล: "
+            document.getElementById("country").innerHTML = "ประเทศ: "
+            document.getElementById("click").innerHTML = "Click to English"
+            i00.textContent = "เลือกประเทศ";
+            i01.textContent = "ไทย";
+            i02.textContent = "เวียดนาม";
+            i03.textContent = "ลาว";
+            i04.textContent = "มาเลเซีย";
+            i05.textContent = "สิงคโปร์";
+            i06.textContent = "ฟิลิปินส์";
+            i07.textContent = "เมียนมาร์";
+            i08.textContent = "กัมพูชา";
+            i09.textContent = "บรูไน";
+            i10.textContent = "อินโดนีเซีย";
+        }
+   }
+</script>
+
+</html>

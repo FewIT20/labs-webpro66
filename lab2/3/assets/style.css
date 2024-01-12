@@ -1,0 +1,29 @@
+body {
+    font-family: 'Kanit', sans-serif;
+}
+
+.warpper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    border: 2px solid #2e2e2e;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    font-size: larger;
+}

@@ -1,0 +1,18 @@
+body {
+    font-family: 'Kanit', sans-serif;
+    background-color: bisque;
+}
+
+.header {
+    text-align: center;
+}
+
+.warpper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
