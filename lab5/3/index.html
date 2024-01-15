@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="http://10.0.15.21/lab/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://10.0.15.21/lab/bootstrap/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container mt-4">
+        <h2 class="mb-4">Quiz</h2>
+
+        <form id="quizForm">
+            <div id="questionsContainer"></div>
+            <button type="button" class="btn btn-primary" onclick="submitQuiz()">Submit Quiz</button>
+        </form>
+        <div id="result" class="mt-4"></div>
+    </div>
+</body>
+<script>
+    let requestURL = 'questionAnswerData.json'; 
+    let request = new XMLHttpRequest(); 
+    let quizData = null;
+    request.onreadystatechange = function () { 
+        if (request.readyState == 4 && request.status == 200) {             
+            quizData = JSON.parse(request.responseText);
+            generateQuizQuestions();
+        } 
+    }; 
+    request.open("GET", requestURL, true); 
+    request.send(); 
+
+    function generateQuizQuestions() {
+        const questionsContainer = document.getElementById('questionsContainer');
+
+        quizData.forEach((questionData, index) => {
+            //Rendering a question in json 
+            const questionCard = document.createElement('div');
+            questionCard.className = 'card mb-4';
+
+            const questionHeader = document.createElement('div');
+            questionHeader.className = 'card-header';
+            questionHeader.innerText = `Question ${index + 1}`;
+
+            const questionBody = document.createElement('div');
+            questionBody.className = 'card-body';
+            questionBody.innerHTML = `
+                <p class="card-text">${questionData.question}</p>
+                ${generateOptions(questionData.answers, `question${index + 1}`)}
+            `;
+
+            questionCard.appendChild(questionHeader);
+            questionCard.appendChild(questionBody);
+            questionsContainer.appendChild(questionCard);
+        });
+    }
+
+    function generateOptions(options, questionName) {
+        let optionsHtml = '';
+
+        for (const key in options) {
+            if (options.hasOwnProperty(key)) {
+                if (key == "correct") {
+                    continue;
+                }
+                optionsHtml += `
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="${questionName}" id="${questionName}${key}" value="${options[key]}">
+                        <label class="form-check-label" for="${questionName}${key}">${options[key]}</label>
+                    </div>
+                `;
+            }
+        }
+
+        return optionsHtml;
+    }
+
+    function submitQuiz() {
+        let correctAnswers = 0;
+        let userAnswers = [];
+
+        quizData.forEach((questionData, index) => {
+            const selectedOption = document.querySelector(`input[name="question${index + 1}"]:checked`);
+            if (selectedOption) {
+                const userAnswer = selectedOption.value;
+                userAnswers.push(userAnswer);
+
+                //Find the key by value very java model - -*
+                let userAnswerKey = null;
+                for (const key in questionData.answers) {
+                    if (questionData.answers.hasOwnProperty(key) && questionData.answers[key] === userAnswer) {
+                        userAnswerKey = key;
+                        break;
+                    }
+                }
+
+                if (userAnswerKey === questionData.answers.correct) {
+                    correctAnswers++;
+                }
+            }
+        });
+
+        let result = `<h4>Quiz Result:</h4>`;
+        result += `<p>Correct Answers: ${correctAnswers} out of ${quizData.length}</p>`;
+
+        document.getElementById('result').innerHTML = result;
+    }
+</script>
+</html>
