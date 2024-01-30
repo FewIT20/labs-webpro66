@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        body {
+            padding: 30px;
+        }
+
+        img {
+            width: 15em;
+            height: 15em;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 15em 15em;
+
+        }
+
+        h2,
+        h3 {
+            color: blue;
+        }
+
+        @media screen and (max-width:600px) {
+            .grid {
+                grid-template-columns: 100%;
+                max-width: 15em;
+            }
+        }
+
+        img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2>Minecraft</h2>
+        <p>
+            An introduction to a blocky sandbox game.
+
+            Minecraft is a game made up of blocks, creatures, and community. You can survive the night or build a work of art – the choice is all yours. But if the thought of exploring a vast new world all on your own feels overwhelming, then fear not! Let's explore what Minecraft is all about!
+
+            WHAT IS THE GOAL OF MINECRAFT?
+            Minecraft has no set goal and can be played however you'd like! This is why it's sometimes called a “sandbox game” – there are lots of things for you to do, and lots of ways that you can play. If you like being creative, then you can use the blocks to build things from your imagination. If you're feeling brave, you can explore the world and face daring challenges. Blocks can be broken, crafted, placed to reshape the landscape, or used to build fantastical creations.
+
+            Creatures can be battled or befriended, depending on how you play. The world of Minecraft allows for epic adventures, quiet meditations, and everything in between. You can even share your creations with other players, or play in community worlds!.</p>
+    </div>
+    <div class="grid">
+        <img src="https://www.minecraft.net/content/dam/games/minecraft/screenshots/wim-end.jpg">
+        <img src="https://www.minecraft.net/content/dam/games/minecraft/screenshots/wim-screen.jpg">
+        <img src="https://www.minecraft.net/content/dam/games/minecraft/screenshots/wim-end.jpg">
+        <img src="https://www.minecraft.net/content/dam/games/minecraft/screenshots/wim-combat.jpg">
+    </div>
+</body>
+
+</html>

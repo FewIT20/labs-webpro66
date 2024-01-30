@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Kanit', sans-serif;
+        }
+
+        img {
+            width: 100%;
+            aspect-ratio: 3/4;
+        }
+
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 25px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px 0;
+        }
+
+        .content {
+            text-indent: 20px;
+        }
+
+        .example {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 20px;
+            width: 100%;
+        }
+
+        .banner {
+            background-color: antiquewhite;
+            padding: 10px;
+            border-radius: 20px;
+        }
+
+        @media screen and (max-width: 840px) {
+            .example {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 640px) {
+            .example {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .example {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Kanit', sans-serif;
+        }
+
+        img {
+            width: 100%;
+            aspect-ratio: 3/4;
+        }
+
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 25px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px 0;
+        }
+
+        .content {
+            text-indent: 20px;
+        }
+
+        .example {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 20px;
+            width: 100%;
+        }
+
+        .banner {
+            background-color: rgb(215, 250, 248);
+            padding: 10px;
+            border-radius: 20px;
+        }
+
+        @media screen and (max-width: 840px) {
+            .example {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 640px) {
+            .example {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .example {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Web Technology</h1>
+        <div class="content">
+            Web technology refers to the various tools and techniques used to create and run websites and web-based applications. It's a vast and ever-evolving field, encompassing a wide range of elements that work together to deliver engaging and functional online experiences.
+        </div>
+        <div class="example">
+            <div class="banner">
+                <h3>HTML</h3>
+                <p class="content">
+                    HTML, or Hypertext Markup Language, is the foundation of every website you see on the internet. It's the language that tells your web browser how to display text, images, links, and other elements on a page. Think of it as the skeleton of a website, providing the basic structure and organization.
+                </p>
+            </div>
+            <div class="banner">
+                <h3>CSS</h3>
+                <p class="content">
+                    CSS, or Cascading Style Sheets, is the language that takes the raw structure of HTML and adds the visual flair. It's like the paint and decorations that turn the skeleton of a website into a beautiful and engaging experience for users.
+                </p>
+            </div>
+            <div class="banner">
+                <h3>JavaScript</h3>
+                <p class="content">
+                    JavaScript is the language that brings websites to life, adding interactivity, dynamic behavior, and responsiveness to web pages. It's like the magic that makes websites more engaging and enjoyable to use.
+                </p>
+            </div>
+            <div class="banner">
+                <h3>Boonstrap</h3>
+                <p class="content">
+                    Bootstrap is a free, open source front-end development framework for the creation of websites and web apps. Designed to enable responsive development of mobile-first websites, Bootstrap provides a collection of syntax for template designs.
+                    As a framework, Bootstrap includes the basics for responsive web development, so developers only need to insert the code into a pre-defined grid system. The Bootstrap framework is built on Hypertext Markup Language (HTML), cascading style sheets (CSS) and JavaScript. Web developers using Bootstrap can build websites much faster without spending time worrying about basic commands and functions.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
