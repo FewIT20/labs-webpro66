@@ -30,7 +30,8 @@ SET time_zone = "+07:00";
 CREATE TABLE `advisor` (
   `s_ID` int NOT NULL,
   `i_ID` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 --
 -- Dumping data for table `advisor`
@@ -53,7 +54,8 @@ CREATE TABLE `classroom` (
   `building` varchar(255) NOT NULL,
   `room_number` int NOT NULL,
   `capacity` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 --
 -- Dumping data for table `classroom`
@@ -76,7 +78,8 @@ CREATE TABLE `course` (
   `title` varchar(255) NOT NULL,
   `dept_name` varchar(255) NOT NULL,
   `credit` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 --
 -- Dumping data for table `course`
@@ -107,7 +110,8 @@ CREATE TABLE `department` (
   `dept_name` varchar(255) NOT NULL,
   `building` varchar(255) NOT NULL,
   `budget` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 --
 -- Dumping data for table `department`
@@ -133,7 +137,8 @@ CREATE TABLE `instructor` (
   `name` varchar(255) NOT NULL,
   `dept_name` varchar(255) NOT NULL,
   `salary` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 --
 -- Dumping data for table `instructor`
@@ -162,7 +167,8 @@ INSERT INTO `instructor` (`ID`, `name`, `dept_name`, `salary`) VALUES
 CREATE TABLE `prereq` (
   `course_id` varchar(9) NOT NULL,
   `prereq_id` varchar(9) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 --
 -- Dumping data for table `prereq`
@@ -191,7 +197,8 @@ CREATE TABLE `section` (
   `building` varchar(255) NOT NULL,
   `room_number` int NOT NULL,
   `time_slot_id` varchar(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 --
 -- Dumping data for table `section`
@@ -213,9 +220,10 @@ INSERT INTO `section` (`course_id`, `sec_id`, `semester`, `year`, `building`, `r
 CREATE TABLE `student` (
   `ID` int NOT NULL,
   `name` varchar(255) NOT NULL,
-  `dept_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `dept_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `tot_cred` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 --
 -- Dumping data for table `student`
@@ -240,8 +248,9 @@ CREATE TABLE `takes` (
   `sec_id` int NOT NULL,
   `semester` enum('Spring','Fall','Summer') NOT NULL,
   `year` int NOT NULL,
-  `grade` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `grade` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 --
 -- Dumping data for table `takes`
@@ -266,7 +275,8 @@ CREATE TABLE `teaches` (
   `sec_id` int NOT NULL,
   `semester` enum('Fall','Spring','Summer') NOT NULL,
   `year` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 --
 -- Dumping data for table `teaches`
@@ -290,7 +300,8 @@ CREATE TABLE `time_slot` (
   `day` varchar(1) NOT NULL,
   `start_time` time NOT NULL,
   `end_time` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 --
 -- Dumping data for table `time_slot`
