@@ -28,9 +28,7 @@ $dbname = "S159Y";
             $conn = mysqli_connect($servername, $username, $password, $dbname);
             // Check connection
             if (!$conn) {
-                ?>
-                <div class="alert alert-danger">Connection failed</div>
-                <?php
+                echo "<div class='alert alert-danager' role='alert'>".$_error."</div>";
             }
             
             if (isset($_POST['action'])) {
@@ -40,10 +38,10 @@ $dbname = "S159Y";
                     echo "<table class='table table-responsive'>";
                     echo "<tr><th>Course ID</th><th>Title</th><th>Department</th><th>Credit</th></tr>";
                     $result = mysqli_query($conn, "SELECT * FROM `course`;");
+                    if (mysqli_num_rows($result) < $_POST['record']) {
+                        $_error = "Not found record";
+                    }
                     if (mysqli_num_rows($result) > 0) {
-                        if (mysqli_num_rows($result) < $_POST['record']) {
-                            $_error = "IndexOutOfRangeExection";
-                        }
                         $count = 1;
                         while ($row = mysqli_fetch_assoc($result)) {
                             if ($count != $_POST['record']) {
@@ -63,13 +61,14 @@ $dbname = "S159Y";
             }
         ?>
         <div class="mt-3">
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-            <div class="form-group">
-                <label for="record">Record ID:</label>
-                <input class="form-control" id="record" name="record" type="number">
-            </div>
-            <button class="btn btn-success mt-2" name="action" id="action">Display</button>    
-        </form>
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                <div class="form-group">
+                    <label for="record">Record ID:</label>
+                    <input class="form-control" id="record" name="record" type="number">
+                </div>
+                <button class="btn btn-success mt-2" name="action" id="action">Display</button>    
+            </form>
+        </div>
     </div>
 </body>
 </html>
