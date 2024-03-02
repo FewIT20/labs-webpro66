@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +11,49 @@
     <script src="http://10.0.15.21/lab/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <?php
+class FewDB extends SQLite3
+{
+
+    public function __construct(string $filename)
+    {
+        $this->open($filename);
+    }
+}
+
+$conn = new FewDB("customers.db");
+if (!$conn) {
+    echo $conn->lastErrorMsg();
+}
+
 $success_msg = "";
 $error_msg = "";
 $toggle_show_data = false;
+if (isset($_GET['getCustomerId'])) {
+    $employeeId = $_GET['getCustomerId'];
+
+    $sql = "SELECT FirstName, LastName, Address, Phone, Email FROM customers WHERE CustomerId = ? LIMIT 1;";
+    $stmt = $conn->prepare("SELECT FirstName, LastName, Address, Phone, Email FROM customers WHERE CustomerId = ? LIMIT 1;");
+    $stmt->bindValue(1, $employeeId, SQLITE3_INTEGER);
+    $result = $stmt->execute();
+
+    $customer = $result->fetchArray(SQLITE3_ASSOC);
+
+    $firstname = $customer['FirstName'];
+    $lastname = $customer['LastName'];
+    $address = $customer['Address'];
+    $phone_num = $customer['Phone'];
+    $email = $customer['Email'];
+
+    setcookie('firstname', $firstname, time() + (86400), "/");
+    setcookie('lastname', $lastname, time() + (86400), "/");
+    setcookie('employeeId', $employeeId, time() + (86400), "/");
+    setcookie('address', $address, time() + (86400), "/");
+    setcookie('phone_num', $phone_num, time() + (86400), "/");
+    setcookie('email', $email, time() + (86400), "/");
+
+    $toggle_show_data = true;
+
+}
 if (isset($_POST['save'])) {
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
@@ -29,6 +70,18 @@ if (isset($_POST['save'])) {
     setcookie('email', $email, time() + (86400), "/");
 
     $success_msg = "Save employee account successfully.";
+
+    $query = "INSERT INTO Customers (CustomerId, FirstName, LastName, Phone, Address, Email) VALUES (:employeeId, :firstname, :lastname, :phone_num, :address, :email)";
+    $stmt = $conn->prepare($query);
+
+    $stmt->bindValue(":employeeId", $employeeId);
+    $stmt->bindValue(":firstname", $firstname);
+    $stmt->bindValue(":lastname", $lastname);
+    $stmt->bindValue(":phone_num", $phone_num); 
+    $stmt->bindValue(":address", $address);
+    $stmt->bindValue(":email", $email);
+    $stmt->close();
+
 }
 if (isset($_POST['show'])) {
     if (count($_COOKIE) != 7) {
@@ -39,6 +92,9 @@ if (isset($_POST['show'])) {
     }
 }
 if (isset($_POST['clear'])) {
+
+    $employeeId = $_COOKIE['employeeId'];
+
     setcookie('firstname', null, -1, '/');
     setcookie('lastname', null, -1, '/');
     setcookie('employeeId', null, -1, '/');
@@ -46,7 +102,7 @@ if (isset($_POST['clear'])) {
     setcookie('phone_num', null, -1, '/');
     setcookie('email', null, -1, '/');
 
-    $success_msg = "Destroy all cookie data";
+
 }
 ?>
 
@@ -147,6 +203,38 @@ if (isset($_POST['clear'])) {
                 <button class="btn btn-warning" type="submit" name="show"><i class="far fa-eye"></i> Show</button>
                 <button class="btn btn-danger" type="submit" name="clear"><i class="fas fa-trash"></i> Clear</button>
             </div>
+
+            <div class="mt-3">
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>CustomerId</th>
+                            <th>FirstName</th>
+                            <th>LastName</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $sql = "SELECT CustomerId, FirstName, LastName, Address, Phone, Email FROM customers;";
+                        $result = $conn->query($sql);
+                        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+                            echo "
+                                <tr>
+                                    <td><a href='".$_SERVER['PHP_SELF']."?getCustomerId=".$row['CustomerId']."'> ". $row['CustomerId'] . "</a></td>
+                                    <td>" . $row['FirstName'] . " " . $row['LastName'] . "</td>
+                                    <td>" . $row['Address'] . "</td>
+                                    <td>" . $row['Phone'] . "</td>
+                                    <td>" . $row['Email'] . "</td>
+                                </tr>
+                                ";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <?php
         if ($toggle_show_data) {
@@ -157,3 +245,6 @@ if (isset($_POST['clear'])) {
 </body>
 
 </html>
+<?php
+$conn->close();
+?>

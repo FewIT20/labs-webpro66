@@ -17,6 +17,7 @@ if (isset($_POST['trigger'])) {
         SELECT MAX(CustomerId) FROM customers
     )";
     $conn->query($sql);
+    echo "[Watch Dog] - You're currently on ". $_SERVER['REMOTE_ADDR'];
 }
 ?>
 <!DOCTYPE html>
